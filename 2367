@@ -1,0 +1,172 @@
+#include <stdio.h>
+#include<conio.h>
+#include <string.h>
+#include <stdlib.h>
+
+
+struct bank
+{
+    int acc_number;
+     char bank_name[20];
+     char aadhar[20];
+     char name[30];
+     char pan[25];
+     char phn[50];
+     float available_balance;
+};
+struct bank account[20];
+
+
+
+
+void Create_new_account();
+void Cash_Deposit();
+void Account_information();
+void display_options();
+
+
+int main()
+{
+    char option;
+
+
+    while(1)
+    {
+       printf("\n***** Welcome to Bank Application *****\n");
+       display_options();
+       printf("Please enter any options (1/2/3/4) ");
+       printf("to continue : ");
+       scanf("%c",&option);
+        printf("%c \n", option);
+        switch(option)
+        {
+          case '1': Create_new_account();
+                    break;
+          case '2': Cash_Deposit();
+                    break;
+          case '3': Account_information();
+                    break;
+          case '4': system("cls");
+                    break;
+          default : system("cls");
+                    printf("Please enter one of the options");
+                    printf("(1/2/3/4) to continue \n ");
+                    break;
+        }
+    }
+    return 0;
+}
+
+void display_options()
+{
+    printf("\n1. Create new account \n");
+    printf("2. Cash Deposit \n");
+    printf("3. Account information \n");
+    printf("4. Clear the screen and display available ");
+    printf("options \n\n");
+}
+
+
+
+void Create_new_account()
+{
+   int acc_number;
+     char bank_name[20];
+     char aadhar[20];
+     char name[30];
+     char pan[25];
+     char phn[50];
+     float available_balance=0;
+
+   printf("\nEnter the bank name              : ");
+   scanf("%s", &bank_name);
+   printf("\nEnter the name of holder          : ");
+   scanf("%s", &name);
+   printf("\nEnter the aadhar  : ");
+   scanf("%s", &aadhar);
+   printf("\nEnter the pan : ");
+   scanf("%s", &pan);
+   printf("\nEnter the phone  : ");
+   scanf("%s", &phn);
+   printf("\nEnter the account number(1 to 10): ");
+   scanf("%d", &acc_number);
+   fflush(stdin);
+
+   strcpy(account[acc_number-1].bank_name,bank_name);
+   strcpy(account[acc_number-1].name,name);
+   strcpy(account[acc_number-1].aadhar,aadhar);
+   strcpy(account[acc_number-1].pan,pan);
+   strcpy(account[acc_number-1].phn,phn);
+   account[acc_number-1].acc_number=acc_number;
+   account[acc_number-1].available_balance=available_balance;
+
+   printf("\nAccount has been created successfully \n\n");
+   printf("Bank name              : %s \n" ,account[acc_number-1].bank_name);
+   printf("Holder name           : %s \n" ,account[acc_number-1].name);
+   printf("Aadhar   : %s \n" ,account[acc_number-1].aadhar);
+   printf("Pan      : %s \n" ,account[acc_number-1].pan);
+   printf("Phone : %s \n" ,account[acc_number-1].phn);
+   printf(" Account number    : %d \n" ,account[acc_number-1].acc_number);
+   printf("Available balance      : %f \n" ,account[acc_number-1].available_balance);
+
+
+}
+
+
+void Account_information()
+{
+     register int num_acc = 0;
+     char phn[20];
+
+     fflush(stdin);
+     printf("phn");
+     scanf("%s",&phn);
+     if(account[num_acc].phn==0)
+     {
+         printf("invalid");
+     }
+     else
+     {
+
+
+     while(strlen(account[num_acc].bank_name)>0)
+     {
+         printf("\nBank name                : %s \n" ,account[num_acc].bank_name);
+         printf(" Holder Name          : %s \n" , account[num_acc].name);
+         printf("Aadhar     : %s \n" , account[num_acc].aadhar);
+         printf("Pan         : %s \n" , account[num_acc].pan);
+         printf("Phone number: %s \n" , account[num_acc].phn);
+        printf("Account number: %d\n" , account[num_acc].acc_number);
+         printf("Available balance        : %f \n\n" ,account[num_acc].available_balance);
+         num_acc++;
+     }
+     }
+     fflush(stdin);
+}
+
+
+void Cash_Deposit()
+{
+   int acc_no;
+   float add_money;
+
+   printf("Enter account number you want to deposit money:");
+   scanf("%d",&acc_no);
+   printf("\nThe current balance for account %d is %f \n",
+   acc_no, account[acc_no-1].available_balance);
+   printf("\nEnter money you want to deposit :  ");
+   scanf("%f",&add_money);
+   fflush(stdin);
+
+   while (acc_no=account[acc_no-1].acc_number)
+   {
+         account[acc_no-1].available_balance=
+         account[acc_no-1].available_balance+add_money;
+         printf("\nThe New balance for account %d is %f \n",
+         acc_no, account[acc_no-1].available_balance);
+         break;
+   }acc_no++;
+}
+
+
+
